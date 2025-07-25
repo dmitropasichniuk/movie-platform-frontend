@@ -1,0 +1,24 @@
+// 1. Абстрактні речі
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// 2. Layout
+// @use 'layout/container';
+
+// 3. Components
+@use 'components';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
