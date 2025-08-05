@@ -4,7 +4,7 @@ import { MovieBackdropImage, PaginationBar } from "../../../components/ui";
 import { findBackdropUrl } from "../../../shared/utils/findBackdropMovie.util";
 import { selectIsGenresLoaded } from "../../genre";
 import { getGenresThunk } from "../../genre/genre.thunks";
-import { MovieFilterContainer } from "../components/movie-filter-container";
+import { MovieFiltersBlock } from "../components/movie-filter-container";
 import {
   selectAllMovies,
   selectIsGetMovieLoading,
@@ -39,7 +39,7 @@ export const MovieListPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (movies?.length && !backdropUrl) {
+    if (movies && movies.length > 0 && !backdropUrl) {
       dispatch(setBackdropUrl(findBackdropUrl(movies)));
     }
   }, [dispatch, movies, backdropUrl]);
@@ -48,7 +48,7 @@ export const MovieListPage = () => {
     <>
       <MovieBackdropImage imgPath={backdropUrl} />
 
-      <MovieFilterContainer />
+      <MovieFiltersBlock movieFilters={movieFilters} />
 
       <MovieGrid movies={movies} isLoading={isGetMovieLoading} />
 

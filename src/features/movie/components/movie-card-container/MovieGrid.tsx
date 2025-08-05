@@ -23,7 +23,7 @@ export const MovieGrid = ({ movies, isLoading }: MovieGridProps) => (
         <ListStatus
           error={null}
           isEmpty={movies.length === 0}
-          emptyText="Фільми не знайдено"
+          emptyText="Movies not found"
         />
       )}
       {movies.map((movie) => (

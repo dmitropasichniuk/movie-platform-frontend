@@ -9,12 +9,12 @@ interface CustomInputProps
   helperText?: string;
 }
 
-export const CustomInput: React.FC<CustomInputProps> = ({
+export const CustomInput = ({
   icon,
   error,
   helperText,
   ...textFieldProps
-}) => {
+}: CustomInputProps) => {
   return (
     <TextField
       {...textFieldProps}

@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
 import { selectIsAuthenticated } from "../../features/auth/auth.selectors";
 import { setShowAuthModal } from "../../features/auth/auth.slice";
+import { handleLogout } from "../../features/auth/auth.handlers";
 
 export const MobileDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -33,6 +34,10 @@ export const MobileDrawer = () => {
     } else {
       dispatch(setShowAuthModal(true));
     }
+  };
+
+  const logoutClick = () => {
+    dispatch(handleLogout());
   };
 
   return (
@@ -61,16 +66,28 @@ export const MobileDrawer = () => {
         <List sx={{ width: 250 }} onClick={() => setOpen(false)}>
           <ListItem disablePadding>
             <ListItemButton component={RouterLink} to="/">
-              <ListItemText primary="Головна" />
+              <ListItemText primary="Main" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton component={RouterLink} to="/about">
+              <ListItemText primary="About Us" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton onClick={handleProfileClick}>
-              <ListItemText primary={isAuthenticated ? "Профіль" : "Увійти"} />
+              <ListItemText primary={isAuthenticated ? "Profile" : "Login"} />
             </ListItemButton>
           </ListItem>
+          {isAuthenticated && (
+            <ListItem disablePadding>
+              <ListItemButton onClick={logoutClick}>
+                <ListItemText primary="Logout" />
+              </ListItemButton>
+            </ListItem>
+          )}
         </List>
-        <ThemeToggle />
+        <ThemeToggle variant="menu" />
       </Drawer>
     </>
   );

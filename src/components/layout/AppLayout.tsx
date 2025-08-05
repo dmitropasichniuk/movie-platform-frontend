@@ -30,6 +30,8 @@ export const AppLayout = () => {
           width: "100%",
           maxWidth: "1500px",
           margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
         }}
         px={2}
       >

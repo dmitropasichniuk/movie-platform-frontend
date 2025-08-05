@@ -22,3 +22,13 @@ export const selectAuthInitialized = createSelector(
   [selectAuthState],
   (auth) => auth.authInitialized
 );
+
+export const selectIsLoginLoading = createSelector(
+  [selectAuthState],
+  (auth) => auth.isUserLoginLoading
+);
+
+export const selectIsRegisterLoading = createSelector(
+  [selectAuthState],
+  (auth) => auth.isUserRegisterLoading
+);

@@ -57,7 +57,7 @@ export const MovieTrailer = ({ videoId, loading }: MovieTrailerProps) => {
         }}
         style={iframeStyles}
       />
-      {hasError && <Box sx={trailerError}>Трейлер недоступний</Box>}
+      {hasError && <Box sx={trailerError}>Trailer not available</Box>}
     </Box>
   );
 };

@@ -34,21 +34,15 @@ export interface MovieTrailerResponseDto {
 }
 
 export interface MovieFilterDto {
+  page: number;
   limit: number;
-  page?: number;
+  sortBy: MovieSortTypes;
+  order: "ASC" | "DESC";
   search?: string;
   genreIds?: number[];
   releaseYear?: number;
   adult?: boolean;
-  sortBy?: MovieSortTypes;
-  order?: "ASC" | "DESC";
 }
-
-export type FiltersLocalState = {
-  genreIds: number[];
-  releaseYear?: number | undefined;
-  adult?: boolean | undefined;
-};
 
 export type MovieSortTypes =
   | "title"

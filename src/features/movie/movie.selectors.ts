@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
-import { DEFAULT_MOVIE_LIMIT } from "../../shared/constants";
+import { DEFAULT_MOVIE_FILTERS } from "../../shared/constants";
 
 export const selectMovieState = (state: RootState) => state.movie;
 
@@ -54,7 +54,7 @@ export const selectMoviePaginationInfo = createSelector(
   (movieState) => ({
     total: movieState.data?.total ?? 0,
     page: movieState.data?.page ?? 1,
-    limit: movieState.data?.limit ?? DEFAULT_MOVIE_LIMIT,
+    limit: movieState.data?.limit ?? DEFAULT_MOVIE_FILTERS.limit,
     totalPages: movieState.data?.totalPages ?? 1,
     hasNext: movieState.data?.hasNext ?? false,
     hasPrev: movieState.data?.hasPrev ?? false,
@@ -64,7 +64,7 @@ export const selectMoviePaginationInfo = createSelector(
 export const selectMovieFilterInfo = createSelector(
   [selectMovieState],
   (movieState) => ({
-    limit: movieState.filters?.limit ?? DEFAULT_MOVIE_LIMIT,
+    limit: movieState.filters?.limit ?? DEFAULT_MOVIE_FILTERS.limit,
     page: movieState.filters?.page,
     search: movieState.filters?.search,
     genreIds: movieState.filters?.genreIds,

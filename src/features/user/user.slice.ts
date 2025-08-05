@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { UserDto } from "../../types";
-import { fetchUsers, fetchUserByExternalId } from "./user.thunks";
+import {
+  fetchUsers,
+  fetchUserByExternalId,
+  updateUserThunk,
+} from "./user.thunks";
 
 interface UserState {
   users: UserDto[];
   isGetUserLoding: boolean;
   isGetAllUsersLoding: boolean;
-  // updateLoading: boolean; added later if needed
+  updateLoading: boolean;
   // deleteLoading: boolean; added later if needed
   error: string | null;
 }
@@ -15,6 +19,7 @@ const initialState: UserState = {
   users: [],
   isGetUserLoding: false,
   isGetAllUsersLoding: false,
+  updateLoading: false,
   error: null,
 };
 
@@ -62,6 +67,19 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserByExternalId.rejected, (state, action) => {
         state.isGetUserLoding = false;
+        state.error = action.error.message ?? "Error";
+      })
+
+      // === updateUserThunk ===
+      .addCase(updateUserThunk.pending, (state) => {
+        state.updateLoading = true;
+        state.error = null;
+      })
+      .addCase(updateUserThunk.fulfilled, (state) => {
+        state.updateLoading = false;
+      })
+      .addCase(updateUserThunk.rejected, (state, action) => {
+        state.updateLoading = false;
         state.error = action.error.message ?? "Error";
       });
   },

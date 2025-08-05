@@ -12,7 +12,7 @@ export const Loader = () => {
       }}
     >
       <CircularProgress size={25} />
-      Завантаження...
+      Loading...
     </Box>
   );
 };

@@ -6,11 +6,11 @@ interface SortDetail {
 }
 
 export const getSortOptions = (): SortDetail[] => [
-  { label: "Найновіші", value: "releaseDate:DESC" },
-  { label: "Найстаріші", value: "releaseDate:ASC" },
-  { label: "Найпопулярніші", value: "popularity:DESC" },
-  { label: "Найкраще оцінені", value: "voteAverage:DESC" },
-  { label: "Найбільше оцінок", value: "voteCount:DESC" },
-  { label: "Назва (A-W)", value: "title:ASC" },
-  { label: "Назва (W-A)", value: "title:DESC" },
+  { label: "Latest", value: "releaseDate:DESC" },
+  { label: "Oldest", value: "releaseDate:ASC" },
+  { label: "Popularity", value: "popularity:DESC" },
+  { label: "Top Rated", value: "voteAverage:DESC" },
+  { label: "Most Voted", value: "voteCount:DESC" },
+  { label: "Title (A-Z)", value: "title:ASC" },
+  { label: "Title (Z-A)", value: "title:DESC" },
 ];

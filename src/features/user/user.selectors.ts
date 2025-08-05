@@ -23,6 +23,11 @@ export const selectUserError = createSelector(
   (user) => user.error
 );
 
+export const selectUpdateUserLoading = createSelector(
+  [selectUserState],
+  (user) => user.updateLoading
+);
+
 // Example of a selector that filters users and use createSelector for performance
 export const selectUsersWithPhoneNumber = createSelector(
   [selectAllUsers],

@@ -1,3 +1,3 @@
 export * from "./MovieFilter";
 export * from "./MovieSort";
-export * from "./MovieFilterContainer";
+export * from "./MovieFiltersBlock";

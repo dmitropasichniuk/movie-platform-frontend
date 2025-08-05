@@ -16,9 +16,7 @@ export const getTMDBImageUrl = (
 ): string => {
   if (!path || !path.startsWith("/")) return "";
   if (!IMAGE_SIZES[type].includes(size)) {
-    console.warn(
-      `Неправильний розмір '${size}' для типу '${type}', використовую 'original'`
-    );
+    console.warn(`Invalid size '${size}' for type '${type}', using 'original'`);
     size = "original";
   }
 

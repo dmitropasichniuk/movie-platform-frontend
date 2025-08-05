@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Clear from "@mui/icons-material/Clear";
 
 type Props = {
-  value: string;
+  value: string | undefined;
   placeholder?: string;
   onChange: (text: string) => void;
   onClear?: () => void;

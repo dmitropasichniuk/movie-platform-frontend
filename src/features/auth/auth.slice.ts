@@ -6,6 +6,7 @@ import {
   loginUserThunk,
   autoLoginThunk,
 } from "./auth.thunks";
+import { updateUserThunk } from "../user/user.thunks";
 
 interface AuthState {
   currentUser: UserDto | null;
@@ -94,6 +95,12 @@ const authSlice = createSlice({
         state.accessToken = null;
         state.authInitialized = true;
         state.error = action.error.message ?? "Error";
+      })
+
+      // === updateUserThunk ===
+      .addCase(updateUserThunk.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.isAuthenticated = true;
       });
   },
 });

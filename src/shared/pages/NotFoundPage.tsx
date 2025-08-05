@@ -16,13 +16,14 @@ export const NotFoundPage = () => {
         404
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Сторінку не знайдено
+        Page Not Found
       </Typography>
       <Typography variant="body1" mb={3}>
-        Можливо, адреса була введена неправильно або сторінка більше не існує.
+        The address may have been entered incorrectly or the page no longer
+        exists.
       </Typography>
       <Button variant="contained" color="primary" component={Link} to="/">
-        На головну
+        Go to Home
       </Button>
     </Box>
   );

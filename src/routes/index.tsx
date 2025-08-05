@@ -3,6 +3,7 @@ import { RequireAuth } from "../features/auth/RequireAuth";
 import { MovieListPage, MovieDetailPage } from "../features/movie/pages";
 import { UserPage } from "../features/user/pages";
 import { NotFoundPage } from "../shared/pages";
+import { AboutPage } from "../features/about";
 
 export const routes = [
   {
@@ -18,6 +19,7 @@ export const routes = [
           </RequireAuth>
         ),
       },
+      { path: "/about", element: <AboutPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

@@ -6,7 +6,8 @@ import {
   Box,
   ListItemText,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { ThemeToggle } from "../ui";
 import logo from "../../assets/logo/flickly_logo.svg";
@@ -14,11 +15,14 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
 import { selectIsAuthenticated } from "../../features/auth/auth.selectors";
 import { setShowAuthModal } from "../../features/auth/auth.slice";
+import { handleLogout } from "../../features/auth/auth.handlers";
+import { HeaderBtn } from "./HeaderBtn";
 
 export const DesktopHeader = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  const location = useLocation();
 
   const handleProfileClick = () => {
     if (isAuthenticated) {
@@ -30,6 +34,10 @@ export const DesktopHeader = () => {
 
   const navigateToHome = () => {
     navigate("/");
+  };
+
+  const logoutClick = () => {
+    dispatch(handleLogout());
   };
 
   return (
@@ -59,13 +67,32 @@ export const DesktopHeader = () => {
           </Typography>
         </Box>
 
-        <Button color="inherit" component={Link} to="/">
-          Головна
-        </Button>
-        <Button color="inherit" onClick={handleProfileClick}>
-          <ListItemText primary={isAuthenticated ? "Профіль" : "Увійти"} />
-        </Button>
-        <ThemeToggle />
+        <Box sx={{ display: "flex", gap: 3 }}>
+          <HeaderBtn
+            text="Main"
+            path="/"
+            activePath={location.pathname}
+            onClick={navigateToHome}
+          />
+          <HeaderBtn
+            text="About Us"
+            path="/about"
+            activePath={location.pathname}
+            onClick={() => navigate("/about")}
+          />
+          <HeaderBtn
+            text={isAuthenticated ? "Profile" : "Login"}
+            path={isAuthenticated ? "/user" : "/login"}
+            activePath={location.pathname}
+            onClick={handleProfileClick}
+          />
+          {isAuthenticated && (
+            <Button color="inherit" onClick={logoutClick}>
+              <ListItemText primary="Logout" />
+            </Button>
+          )}
+          <ThemeToggle variant="icon" />
+        </Box>
       </Toolbar>
     </AppBar>
   );

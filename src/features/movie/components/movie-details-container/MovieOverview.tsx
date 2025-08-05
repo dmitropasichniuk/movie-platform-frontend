@@ -3,12 +3,9 @@ import { getTMDBImageUrl } from "../../../../shared/utils/tmdbImage.util";
 import { MovieMetaField } from "./MovieMetaField";
 import { GenresList } from "./GenreList";
 import type { MovieDto } from "../../dto";
-import {
-  heroSectionStyles,
-  posterStyles,
-  contentStyles,
-} from "./MovieOverview.styles";
+import { contentStyles } from "./MovieOverview.styles";
 import { getMovieDetails } from "../../utils/getMovieDetails";
+import { mainBoxStyle, mainCardMediaStyles } from "../../../../theme/styles";
 
 interface Props {
   movie: MovieDto | null;
@@ -21,16 +18,16 @@ export const MovieOverview = ({ movie }: Props) => {
   const movieDetails = getMovieDetails(movie);
 
   return (
-    <Box sx={heroSectionStyles}>
+    <Box sx={mainBoxStyle()}>
       <CardMedia
         component="img"
         image={posterUrl}
         alt={movie.title}
-        sx={posterStyles}
+        sx={mainCardMediaStyles(5)}
       />
 
       <Box sx={contentStyles}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+        <Typography variant="h3" fontWeight="bold" gutterBottom>
           {movie.title}
         </Typography>
 

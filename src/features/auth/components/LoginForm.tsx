@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -9,10 +9,11 @@ import { useLoginHandler } from "../auth.handlers";
 import { CustomInput } from "../../../components/ui";
 
 type Props = {
+  loading?: boolean;
   onSwitchMode: () => void;
 };
 
-export const LoginForm = ({ onSwitchMode }: Props) => {
+export const LoginForm = ({ loading, onSwitchMode }: Props) => {
   const {
     register,
     handleSubmit,
@@ -44,11 +45,11 @@ export const LoginForm = ({ onSwitchMode }: Props) => {
         />
 
         <Button type="submit" variant="contained" fullWidth>
-          Увійти
+          {loading ? <CircularProgress size={20} /> : "Log In"}
         </Button>
         <Typography variant="body2" align="center">
-          Ще не маєш акаунту?{" "}
-          <Button onClick={onSwitchMode}>Зареєструватися</Button>
+          Don't have an account yet?
+          <Button onClick={onSwitchMode}>Register</Button>
         </Typography>
       </Stack>
     </form>

@@ -6,12 +6,9 @@ import {
   getMoviesThunk,
   getMovieTrailerThunk,
 } from "./movie.thunks";
-import { DEFAULT_MOVIE_LIMIT } from "../../shared/constants";
+import { DEFAULT_MOVIE_FILTERS } from "../../shared/constants";
 
-const defaultFilters: MovieFilterDto = {
-  page: 1,
-  limit: DEFAULT_MOVIE_LIMIT,
-};
+const defaultFilters: MovieFilterDto = DEFAULT_MOVIE_FILTERS;
 
 const initialState: MoviePaginatedState<MovieDto[], MovieFilterDto> = {
   data: null,

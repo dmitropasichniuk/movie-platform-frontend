@@ -13,10 +13,10 @@ import { StyledFormControl } from "./StyledFormControl";
 type MovieFilterProps = {
   allGenres?: GenreDto[];
   genreIds: number[];
-  releaseYear?: number;
-  adult?: boolean;
+  releaseYear?: number | undefined;
+  adult?: boolean | undefined;
   onChange: (filters: {
-    genreIds?: number[];
+    genreIds?: number[] | undefined;
     releaseYear?: number | undefined;
     adult?: boolean | undefined;
   }) => void;
@@ -59,23 +59,23 @@ export const MovieFilter = ({
     <>
       {allGenres && allGenres?.length > 0 && (
         <StyledFormControl size="small">
-          <InputLabel id="genre-label">Жанри</InputLabel>
+          <InputLabel id="genre-label">Genres</InputLabel>
           <Select
             labelId="genre-label"
             multiple
             value={genreIds}
             onChange={handleGenreChange}
-            input={<OutlinedInput label="Жанри" />}
+            input={<OutlinedInput label="Genres" />}
             renderValue={(selected) =>
               selected
                 .map(
                   (externalId) =>
-                    allGenres?.find((g) => g.externalId === externalId)?.name
+                    allGenres.find((g) => g.externalId === externalId)?.name
                 )
                 .join(", ")
             }
           >
-            {allGenres?.map((genre) => (
+            {allGenres.map((genre) => (
               <MenuItem key={genre.externalId} value={genre.externalId}>
                 <Checkbox checked={genreIds.includes(genre.externalId)} />
                 <ListItemText primary={genre.name} />
@@ -86,14 +86,14 @@ export const MovieFilter = ({
       )}
 
       <StyledFormControl size="small">
-        <InputLabel id="year-label">Рік</InputLabel>
+        <InputLabel id="year-label">Year</InputLabel>
         <Select
           labelId="year-label"
           value={releaseYear ? releaseYear?.toString() : "all"}
           onChange={handleYearChange}
-          label="Рік"
+          label="Year"
         >
-          <MenuItem value="all">Усі</MenuItem>
+          <MenuItem value="all">All</MenuItem>
           {years.map((year) => (
             <MenuItem key={year} value={year}>
               {year}
@@ -103,16 +103,16 @@ export const MovieFilter = ({
       </StyledFormControl>
 
       <StyledFormControl size="small">
-        <InputLabel id="adult-label">Вікова категорія</InputLabel>
+        <InputLabel id="adult-label">Age Rating</InputLabel>
         <Select
           labelId="adult-label"
           value={adult === undefined ? "all" : String(adult)}
           onChange={handleAdultChange}
-          label="Дорослий контент"
+          label="Adult Content"
         >
-          <MenuItem value="all">Усі</MenuItem>
-          <MenuItem value="false">Без 18+</MenuItem>
-          <MenuItem value="true">Фільми 18+</MenuItem>
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="false">Under 18</MenuItem>
+          <MenuItem value="true">18+</MenuItem>
         </Select>
       </StyledFormControl>
     </>

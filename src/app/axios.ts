@@ -27,11 +27,11 @@ api.interceptors.response.use(
 
     if (status === 401 || status === 403) {
       NotificationService.error(
-        "Ви вийшли з системи. Будь ласка, увійдіть знову."
+        "You have been logged out. Please log in again."
       );
       appDispatch(handleLogout(true));
     } else if (status >= 400 && status < 600) {
-      const message = error.response?.data?.message || "Сталася помилка";
+      const message = error.response?.data?.message || "An error occurred";
       NotificationService.error(message);
     }
 

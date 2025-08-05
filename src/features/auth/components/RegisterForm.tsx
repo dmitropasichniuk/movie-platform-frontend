@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -10,10 +10,11 @@ import { useRegisterHandler } from "../auth.handlers";
 import { CustomInput } from "../../../components/ui";
 
 type Props = {
+  loading?: boolean;
   onSwitchMode: () => void;
 };
 
-export const RegisterForm = ({ onSwitchMode }: Props) => {
+export const RegisterForm = ({ loading, onSwitchMode }: Props) => {
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ export const RegisterForm = ({ onSwitchMode }: Props) => {
           icon={<EmailOutlinedIcon />}
         />
         <CustomInput
-          placeholder="Пароль"
+          placeholder="Password"
           type="password"
           {...register("password")}
           error={errors.password}
@@ -60,10 +61,10 @@ export const RegisterForm = ({ onSwitchMode }: Props) => {
         />
 
         <Button type="submit" variant="contained" fullWidth>
-          Зареєструватися
+          {loading ? <CircularProgress size={20} /> : "Register"}
         </Button>
         <Typography variant="body2" align="center">
-          Вже маєш акаунт? <Button onClick={onSwitchMode}>Увійти</Button>
+          Do you have an account? <Button onClick={onSwitchMode}>Log In</Button>
         </Typography>
       </Stack>
     </form>

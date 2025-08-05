@@ -6,6 +6,7 @@ import type { PaginatedResponseDto } from "../../shared/dto";
 import { updateFilters } from "./movie.slice";
 import { mergeFiltersWithResetPage } from "./movie.handlers";
 import type { RootState } from "../../app/store";
+import { DEFAULT_MOVIE_FILTERS } from "../../shared/constants";
 
 export const getMoviesThunk = createAsyncThunk(
   "movies/fetchMovies",
@@ -27,6 +28,15 @@ export const applyFiltersThunk = createAsyncThunk<
   dispatch(updateFilters(updatedFilters));
   await dispatch(getMoviesThunk(updatedFilters));
 });
+
+export const clearFiltersThunk = createAsyncThunk(
+  "movies/clearFilters",
+  async (_, { dispatch }) => {
+    const defaultFilters: MovieFilterDto = DEFAULT_MOVIE_FILTERS;
+    dispatch(updateFilters(defaultFilters));
+    await dispatch(getMoviesThunk(defaultFilters));
+  }
+);
 
 export const getMovieByIdThunk = createAsyncThunk<MovieDto, number>(
   "movies/getMovieById",

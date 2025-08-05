@@ -14,11 +14,15 @@ export interface UserDto {
 }
 
 export interface UpdateUserDto {
-  userName?: string;
-  email?: string;
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  age?: number;
-  avatar?: string;
+  userName?: string | null;
+  email?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  phone?: string | null;
+  age?: number | null;
 }
+
+export type UpdateUserArgs = {
+  id: string;
+  data: UpdateUserDto;
+};

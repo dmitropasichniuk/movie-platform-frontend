@@ -4,23 +4,23 @@ export const registerSchema = z
   .object({
     userName: z
       .string()
-      .min(2, "userName повинно містити мінімум 2 символи")
-      .max(50, "userName не повинно перевищувати 50 символів"),
+      .min(2, "User Name should be at least 2 characters long")
+      .max(50, "User Name should not exceed 50 characters"),
 
     password: z
       .string()
-      .min(6, "Пароль повинен містити мінімум 6 символів")
+      .min(6, "Password should be at least 6 characters long")
       .regex(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
-        "Пароль повинен містити великі та малі літери, цифри та спец. символи"
+        "Password must contain uppercase and lowercase letters, numbers, and special characters"
       ),
 
     confirmPassword: z.string(),
 
-    email: z.string().email("Неправильний формат email"),
+    email: z.string().email("Invalid email format"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Паролі не співпадають",
+    message: "Passwords do not match",
     path: ["confirmPassword"],
   });
 

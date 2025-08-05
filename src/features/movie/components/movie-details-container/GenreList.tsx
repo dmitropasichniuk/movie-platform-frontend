@@ -7,11 +7,11 @@ interface GenresListProps {
   size?: "small" | "medium";
 }
 
-export const GenresList: React.FC<GenresListProps> = ({
+export const GenresList = ({
   genres,
   title = "Genres",
   size = "small",
-}) => {
+}: GenresListProps) => {
   if (!genres?.length) return null;
 
   return (

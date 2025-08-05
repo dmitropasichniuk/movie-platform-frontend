@@ -16,7 +16,11 @@ type MovieSortProps = {
   onSortChange: (sortBy: MovieSortTypes, order: "ASC" | "DESC") => void;
 };
 
-export const MovieSort = ({ sortBy, order, onSortChange }: MovieSortProps) => {
+export const MovieSort = ({
+  sortBy = "popularity",
+  order = "ASC",
+  onSortChange,
+}: MovieSortProps) => {
   const currentValue = `${sortBy}:${order}`;
   const sortOptions = getSortOptions();
 
@@ -27,11 +31,11 @@ export const MovieSort = ({ sortBy, order, onSortChange }: MovieSortProps) => {
 
   return (
     <StyledFormControl size="small">
-      <InputLabel id="sort-label">Сортувати</InputLabel>
+      <InputLabel id="sort-label">Sort By</InputLabel>
       <Select
         labelId="sort-label"
         value={currentValue}
-        input={<OutlinedInput label="Сортувати" />}
+        input={<OutlinedInput label="Sort By" />}
         onChange={handleChange}
       >
         {sortOptions.map(({ label, value }) => (

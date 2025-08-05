@@ -28,10 +28,10 @@ export const useRegisterHandler = () => {
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         NotificationService.error(
-          "Помилка реєстрації: " + (err.response?.data?.message || "невідома")
+          "Registration Error: " + (err.response?.data?.message || "Unknown")
         );
       } else {
-        NotificationService.error("Сталася невідома помилка");
+        NotificationService.error("An unknown error occurred");
       }
     }
   };
@@ -49,10 +49,10 @@ export const useLoginHandler = () => {
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         NotificationService.error(
-          "Помилка реєстрації: " + (err.response?.data?.message || "невідома")
+          "Registration Error: " + (err.response?.data?.message || "unknown")
         );
       } else {
-        NotificationService.error("Сталася невідома помилка");
+        NotificationService.error("An unknown error occurred");
       }
     }
   };
