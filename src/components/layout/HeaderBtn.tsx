@@ -1,4 +1,6 @@
-import { Button, Link, ListItemText } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { ListItemText } from "@mui/material";
 
 interface BtnProps {
   text: string;
@@ -11,7 +13,7 @@ export const HeaderBtn = ({ text, path, activePath, onClick }: BtnProps) => {
   return (
     <Button
       color={path === activePath ? "primary" : "inherit"}
-      component={Link}
+      component={RouterLink}
       to={path}
       onClick={onClick}
     >

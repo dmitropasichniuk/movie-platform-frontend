@@ -1,7 +1,8 @@
-import { Typography, Grid, List, ListItem, ListItemText } from "@mui/material";
+import { Grid } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import PushPinIcon from "@mui/icons-material/PushPin";
+import { FeatureColumn } from "./FeatureColumn";
 
 type FeatureSectionProps = {
   features: {
@@ -10,33 +11,6 @@ type FeatureSectionProps = {
     planned: string[];
   };
 };
-
-const FeatureColumn = ({
-  label,
-  items,
-  icon,
-}: {
-  label: string;
-  items: string[];
-  icon: React.ReactNode;
-}) => (
-  <Grid item xs={12} md={4} sx={{ minWidth: "30%" }}>
-    <Typography
-      variant="subtitle1"
-      gutterBottom
-      sx={{ display: "flex", alignItems: "center", gap: 1 }}
-    >
-      {icon} {label}
-    </Typography>
-    <List dense disablePadding>
-      {items.map((feature, i) => (
-        <ListItem key={i} disableGutters>
-          <ListItemText primary={feature} />
-        </ListItem>
-      ))}
-    </List>
-  </Grid>
-);
 
 export const FeatureSection = ({ features }: FeatureSectionProps) => {
   return (
