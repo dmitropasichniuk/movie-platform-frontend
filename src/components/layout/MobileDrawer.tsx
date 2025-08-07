@@ -36,6 +36,10 @@ export const MobileDrawer = () => {
     }
   };
 
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   const logoutClick = () => {
     dispatch(handleLogout());
   };
@@ -47,16 +51,23 @@ export const MobileDrawer = () => {
         elevation={1}
         sx={{ bgcolor: "background.default", color: "text.primary" }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box
-            component="img"
-            src={logo}
-            alt="Movie Review Logo"
-            sx={{ height: 40, mr: 1 }}
-          />
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Flickly
-          </Typography>
+            onClick={navigateToHome}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            <Box
+              component="img"
+              src={logo}
+              alt="Movie Review Logo"
+              sx={{ height: 40, mr: 1 }}
+            />
+            <Typography variant="h6">Flickly</Typography>
+          </Box>
           <IconButton edge="end" color="inherit" onClick={() => setOpen(true)}>
             <MenuIcon />
           </IconButton>

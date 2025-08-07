@@ -26,7 +26,7 @@ export const AppLayout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 5,
+          p: { xs: 2, sm: 5 },
           width: "100%",
           maxWidth: "1500px",
           margin: "0 auto",
