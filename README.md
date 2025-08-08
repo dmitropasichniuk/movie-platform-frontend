@@ -21,7 +21,7 @@ This project was built to strengthen skills in frontend and fullstack developmen
 
 ## Live Demo
 
-[Переглянути на Vercel](https://flickly-app.vercel.app)
+[Переглянути на Vercel](https://flickly-web.vercel.app)
 
 ---
 
@@ -46,7 +46,7 @@ Create your .env file from the example:
 ```
 
 Set the following environment variable:
-VITE_API_URL=https://flickly-backend.up.railway.app/api
+VITE_API_URL=https://movie-platform-backend-production.up.railway.app
 
 ### 3. Run the app locally
 
