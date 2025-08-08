@@ -11,7 +11,7 @@ export const Loader = () => {
         gap: 1,
       }}
     >
-      <CircularProgress size={25} />
+      <CircularProgress size={20} />
       Loading...
     </Box>
   );

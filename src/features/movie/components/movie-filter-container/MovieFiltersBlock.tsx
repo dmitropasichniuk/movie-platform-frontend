@@ -1,5 +1,5 @@
-import { Box } from "@mui/system";
-import { Button } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/system";
+import { Button, Collapse } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import { MovieSort } from "./MovieSort";
@@ -10,6 +10,7 @@ import { selectAllGenres } from "../../../genre";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { useRef, useEffect, useState } from "react";
 import { applyFiltersThunk, clearFiltersThunk } from "../../movie.thunks";
+import { CollapseFilterBtn } from "./CollapseFilterBtn";
 
 interface FilterProps {
   movieFilters: MovieFilterDto;
@@ -21,6 +22,8 @@ export const MovieFiltersBlock = ({ movieFilters }: FilterProps) => {
   const isFirstRender = useRef(true);
   const genres = useAppSelector(selectAllGenres);
   const [searchInput, setSearchInput] = useState(movieFilters.search ?? "");
+  const [open, setOpen] = useState(true);
+  const isSmallScreen = useMediaQuery("(max-width:1082px)");
 
   const handleSearchClear = () => {
     setSearchInput("");
@@ -58,45 +61,64 @@ export const MovieFiltersBlock = ({ movieFilters }: FilterProps) => {
   }, [searchInput, dispatch, movieFilters.search]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-start",
-        flexWrap: "wrap",
-        gap: 2,
-        mb: 1,
-        width: "100%",
-      }}
-    >
-      <SearchBar
-        value={searchInput}
-        onChange={setSearchInput}
-        onClear={handleSearchClear}
-      />
-      <MovieSort
-        sortBy={movieFilters.sortBy}
-        order={movieFilters.order}
-        onSortChange={handleSortChange}
-      />
-      <MovieFilter
-        allGenres={genres}
-        genreIds={movieFilters.genreIds || []}
-        releaseYear={movieFilters.releaseYear}
-        adult={movieFilters.adult}
-        onChange={handleFilter}
-      />
-      <Button
-        size="small"
-        onClick={clearFilters}
-        startIcon={<ClearIcon />}
-        variant="outlined"
+    <>
+      <Box
         sx={{
-          color: "text.secondary",
-          textTransform: "none",
+          display: "flex",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
+          gap: 2,
+          mb: isSmallScreen ? 0 : 2,
+          width: "100%",
+          position: "relative",
         }}
       >
-        Reset
-      </Button>
-    </Box>
+        <SearchBar
+          value={searchInput}
+          onChange={setSearchInput}
+          onClear={handleSearchClear}
+        />
+        <Collapse in={!isSmallScreen || open}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexWrap: "wrap",
+              borderTop: "1px solid",
+              borderColor: "divider",
+              p: 1,
+              backgroundColor: "#ffffff0a",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <MovieSort
+              sortBy={movieFilters.sortBy}
+              order={movieFilters.order}
+              onSortChange={handleSortChange}
+            />
+            <MovieFilter
+              allGenres={genres}
+              genreIds={movieFilters.genreIds || []}
+              releaseYear={movieFilters.releaseYear}
+              adult={movieFilters.adult}
+              onChange={handleFilter}
+            />
+            <Button
+              size="small"
+              onClick={clearFilters}
+              startIcon={<ClearIcon />}
+              variant="outlined"
+              sx={{
+                color: "text.secondary",
+                textTransform: "none",
+              }}
+            >
+              Reset
+            </Button>
+          </Box>
+        </Collapse>
+      </Box>
+      {isSmallScreen && <CollapseFilterBtn open={open} setOpen={setOpen} />}
+    </>
   );
 };

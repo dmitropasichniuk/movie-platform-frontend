@@ -4,7 +4,7 @@ import { ListItemText } from "@mui/material";
 
 interface BtnProps {
   text: string;
-  path: string;
+  path: string | null;
   activePath: string;
   onClick: () => void;
 }
@@ -14,7 +14,7 @@ export const HeaderBtn = ({ text, path, activePath, onClick }: BtnProps) => {
     <Button
       color={path === activePath ? "primary" : "inherit"}
       component={RouterLink}
-      to={path}
+      to={path || "#"}
       onClick={onClick}
     >
       <ListItemText primary={text} />

@@ -82,7 +82,7 @@ export const DesktopHeader = () => {
           />
           <HeaderBtn
             text={isAuthenticated ? "Profile" : "Login"}
-            path={isAuthenticated ? "/user" : "/login"}
+            path={isAuthenticated ? "/user" : null}
             activePath={location.pathname}
             onClick={handleProfileClick}
           />

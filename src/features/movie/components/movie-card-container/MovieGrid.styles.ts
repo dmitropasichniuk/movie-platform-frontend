@@ -4,7 +4,7 @@ export const loaderBoxStyles: SxProps<Theme> = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  minHeight: 25,
+  minHeight: 24,
   mb: 1.5,
 };
 
