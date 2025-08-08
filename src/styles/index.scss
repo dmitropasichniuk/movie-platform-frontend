@@ -1,12 +1,12 @@
 // 1. Abstracts
-@use 'abstracts/variables' as *;
-@use 'abstracts/mixins' as *;
+@use "abstracts/variables" as *;
+@use "abstracts/mixins" as *;
 
 // 2. Layout
 // @use 'layout/container';
 
 // 3. Components
-@use 'components';
+@use "components";
 
 * {
   margin: 0;
@@ -19,6 +19,6 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }

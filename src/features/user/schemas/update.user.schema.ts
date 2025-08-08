@@ -46,17 +46,23 @@ export const updateUserSchema = z.object({
     .transform((val) => (!val || val === "" ? null : val)),
 
   age: z
-    .preprocess((val) => {
-      if (
-        val === null ||
-        val === "" ||
-        (typeof val === "string" && val.trim() === "") ||
-        (typeof val === "number" && isNaN(val))
-      ) {
-        return null;
-      }
-      return val;
-    }, z.union([z.null(), z.coerce.number({ invalid_type_error: "Age must be a valid number" })]))
+    .preprocess(
+      (val) => {
+        if (
+          val === null ||
+          val === "" ||
+          (typeof val === "string" && val.trim() === "") ||
+          (typeof val === "number" && isNaN(val))
+        ) {
+          return null;
+        }
+        return val;
+      },
+      z.union([
+        z.null(),
+        z.coerce.number({ invalid_type_error: "Age must be a valid number" }),
+      ])
+    )
     .refine((val) => {
       if (val === null) return true;
       return val >= 1 && val <= 120;

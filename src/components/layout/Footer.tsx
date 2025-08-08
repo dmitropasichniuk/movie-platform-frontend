@@ -12,7 +12,8 @@ export const Footer = () => {
       }}
     >
       <Typography variant="body2" color="text.secondary">
-        © {new Date().getFullYear()} Movie Review Platform. All rights reserved.
+        © {new Date().getFullYear()} Movie Review Platform. All rights
+        reserved.
       </Typography>
     </Box>
   );

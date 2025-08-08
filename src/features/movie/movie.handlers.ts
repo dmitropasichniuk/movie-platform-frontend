@@ -14,6 +14,6 @@ export const mergeFiltersWithResetPage = (
   return {
     ...current,
     ...patch,
-    page: shouldResetPage ? 1 : patch.page ?? current.page ?? 1,
+    page: shouldResetPage ? 1 : (patch.page ?? current.page ?? 1),
   };
 };
