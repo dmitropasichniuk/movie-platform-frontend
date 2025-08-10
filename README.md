@@ -46,7 +46,7 @@ Create your .env file from the example:
 ```
 
 Set the following environment variable:
-VITE_API_URL=https://movie-platform-backend-production.up.railway.app
+VITE_API_URL=https://flickly-backend.up.railway.app
 
 ### 3. Run the app locally
 
