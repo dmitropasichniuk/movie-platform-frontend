@@ -78,7 +78,7 @@ export const MovieFiltersBlock = ({ movieFilters }: FilterProps) => {
           onChange={setSearchInput}
           onClear={handleSearchClear}
         />
-        <Collapse in={!isSmallScreen || open}>
+        <Collapse in={!isSmallScreen || open} sx={{ width: "100%" }}>
           <Box
             sx={{
               display: "flex",
